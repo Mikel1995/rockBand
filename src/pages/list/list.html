@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Band List</ion-title>
+    <ion-searchbar [(ngModel)]="searchKey" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"></ion-searchbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>
+  <h2>Welcome to Band List!</h2>
+  <ion-icon (click)="openAddBand();" item-right name="add"></ion-icon>
+    </ion-list-header>
+    <ion-item-sliding *ngFor="let item of inComingData">
+      <button ion-item (click)="openBandDetail()">
+        <ion-thumbnail item-left>
+        </ion-thumbnail>
+        <h2>
+          {{item.name}}
+        </h2>
+        <ion-icon item-right name="arrow-forward"></ion-icon>
+      </button>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="removeItem(item._id);">Delete</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
+<ion-nav #mycontent [root]="rootPage"></ion-nav>
+
+<ion-menu [content]="mycontent">
+  <ion-content>
+    <ion-list>
+      <p>some menu content, could be list items</p>
+    </ion-list>
+  </ion-content>
+</ion-menu>
