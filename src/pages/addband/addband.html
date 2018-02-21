@@ -10,13 +10,13 @@
     <ion-title>Add New Band</ion-title>
 
     <ion-buttons end>
-        <button ion-button strong>
-          <span color="primary" showWhen="ios">
-            Done
-          </span>
-          <ion-icon name="md-checkmark" showWhen="core,android,windows"></ion-icon>
-        </button>
-      </ion-buttons>
+      <button ion-button strong>
+        <span color="primary" showWhen="ios">
+          Done
+        </span>
+        <ion-icon name="md-checkmark" showWhen="core,android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
 
   </ion-navbar>
 
@@ -24,22 +24,29 @@
 
 
 <ion-content padding>
-    <form #form="ngForm" (ngSubmit)="addBand(form)">
-        <ion-item>
-          <ion-label>Band Name</ion-label>
-          <ion-input type="text"  [(ngModel)]="band.name" name="name" ngControl="name" ></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label>Memebers</ion-label>
-            <ion-select [(ngModel)]="band.age" ngControl="age" name="age" multiple="false">
-              <ion-option>2</ion-option>
-              <ion-option>3</ion-option>
-              <ion-option>4</ion-option>
-              <ion-option>5</ion-option>
-              <ion-option>6</ion-option>
-              <ion-option>7</ion-option>
-            </ion-select>
-          </ion-item>
-        <button ion-button type="submit"  block>Save </button>
-      </form>
+  <form #form="ngForm" (ngSubmit)="addBand(form)">
+    <ion-item>
+      <ion-label>Band Name</ion-label>
+      <ion-input type="text" [(ngModel)]="band.name" name="name" ngControl="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Memebers</ion-label>
+      <ion-select [(ngModel)]="band.age" ngControl="age" name="age" multiple="false">
+        <ion-option>2</ion-option>
+        <ion-option>3</ion-option>
+        <ion-option>4</ion-option>
+        <ion-option>5</ion-option>
+        <ion-option>6</ion-option>
+        <ion-option>7</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <p>{{imageURI}}</p>
+      <button ion-button color="secondary" (click)="getImage()">Get Image</button>
+    </ion-item>
+    <button ion-button icon-left (click)="uploadImage()" [disabled]="lastImage === null">
+      <ion-icon name="cloud-upload"></ion-icon>Upload
+    </button>
+    <button ion-button type="submit" block>Save </button>
+  </form>
 </ion-content>

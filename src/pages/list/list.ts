@@ -1,5 +1,6 @@
 import { AddbandPage } from './../addband/addband';
 import { BandsProvider } from "./../../providers/bands/bands";
+import { BanddetailPage } from "./../banddetail/banddetail";
 import { Component } from "@angular/core";
 import {
   NavController,
@@ -14,6 +15,7 @@ import {
 })
 export class ListPage {
   private inComingData;
+  private allData;
   searchKey: string = "";
 
   constructor(
@@ -29,6 +31,7 @@ export class ListPage {
     this.homeProvider.getAllRockBands().subscribe(
       data => {
         this.inComingData = data;
+        this.allData = data;
         console.log(data);
       },
       err => {
@@ -65,7 +68,7 @@ export class ListPage {
         
       },
       error => {
-        this.presentToast("Item has been deleted!");
+        this.presentToast("Item has not been deleted!");
         this.navCtrl.push(ListPage);
       }
     );
@@ -83,6 +86,28 @@ export class ListPage {
     });
 
     toast.present();
+  }
+
+  onInputSearch(ev){
+    this.inComingData = this.allData;
+    console.log('this.allData: ', this.allData);
+    let val = ev.target.value;
+    if(!val || !val.trim()){
+      return;
+    }
+  
+    this.inComingData = this.inComingData.filter((v)=>{
+      if(v.name.toLowerCase().indexOf(val.toLowerCase())>-1){
+        return true;
+      }
+      return false;
+    })
+    console.log('this.inComingData: ', this.inComingData);
+  }
+
+  openBandDetail(badDetail){
+    console.log('badDetail: ', badDetail);
+    this.navCtrl.push(BanddetailPage, {'bandDetail': badDetail});
   }
 
   private openAddBand() {

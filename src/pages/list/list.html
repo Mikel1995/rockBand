@@ -4,7 +4,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Band List</ion-title>
-    <ion-searchbar [(ngModel)]="searchKey" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="searchKey" (ionInput)="onInputSearch($event)"></ion-searchbar>
   </ion-navbar>
 </ion-header>
 
@@ -15,7 +15,7 @@
   <ion-icon (click)="openAddBand();" item-right name="add"></ion-icon>
     </ion-list-header>
     <ion-item-sliding *ngFor="let item of inComingData">
-      <button ion-item (click)="openBandDetail()">
+      <button ion-item (click)="openBandDetail(item);">
         <ion-thumbnail item-left>
         </ion-thumbnail>
         <h2>

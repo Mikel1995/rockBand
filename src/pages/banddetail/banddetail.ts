@@ -14,12 +14,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'banddetail.html',
 })
 export class BanddetailPage {
-
+  private bandDetail;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.bandDetail = navParams.get('bandDetail');
   }
 
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BanddetailPage');
+    
   }
 
 }
